@@ -62,27 +62,32 @@ int main()
     if (!reader) {
         cout << "ERROR. File not opened" << endl;
     }
-    else while (reader) {
+    else {
         for (int i = 0; i < FILE_SIZE; i++) {
             getline(reader, s);
-            cout << s << endl;
-//            m.setScreenWriter(s);
+            m.setScreenWriter(s);
+            reader.ignore();
+            reader.clear();
+            
             reader >> n;
-            cout << n << endl;
-//            m.setReleaseYear(n);
+            m.setReleaseYear(n);
+            reader.ignore();
+            reader.clear();
+            
             reader >> t;
-            cout << t << endl;
-//            m.setTitle(t);
-//            movieVector.push_back(m);
+            m.setTitle(t);
+            reader.ignore();
+            reader.clear();
+            
+            movieVector.push_back(m);
         }
     }
     reader.close();
     
-//    for (int i = 0; i < FILE_SIZE; i++) {
-//        movieVector[i].print_Movie();
-//        cout << "---" << endl;
-//    }
-//
+    for (int i = 0; i < FILE_SIZE; i++) {
+        movieVector[i].print_Movie();
+        cout << "---" << endl;
+    }
     
     return 0;
 }
