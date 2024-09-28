@@ -51,31 +51,38 @@ int main()
     string fileName = ("TopMovies.txt");
     vector<Movie> movieVector;
     string s;
+    string t;
     Movie m;
     
     int n;
+    
     
     reader.open(fileName);
     
     if (!reader) {
         cout << "ERROR. File not opened" << endl;
     }
-    else {
+    else while (reader) {
         for (int i = 0; i < FILE_SIZE; i++) {
             getline(reader, s);
-            m.setScreenWriter(s);
+            cout << s << endl;
+//            m.setScreenWriter(s);
             reader >> n;
-            m.setReleaseYear(n);
-            reader >> s;
-            m.setTitle(s);
-            movieVector.push_back(m);
+            cout << n << endl;
+//            m.setReleaseYear(n);
+            reader >> t;
+            cout << t << endl;
+//            m.setTitle(t);
+//            movieVector.push_back(m);
         }
     }
+    reader.close();
     
-    for (int i = 0; i < FILE_SIZE; i++) {
-        movieVector[i].print_Movie();
-        cout << "---" << endl;
-    }
+//    for (int i = 0; i < FILE_SIZE; i++) {
+//        movieVector[i].print_Movie();
+//        cout << "---" << endl;
+//    }
+//
     
     return 0;
 }
