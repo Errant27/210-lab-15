@@ -1,8 +1,10 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <vector>
 using namespace std;
 
+const int FILE_SIZE = 4;
 
 class Movie
 {
@@ -47,8 +49,10 @@ int main()
 {
     ifstream reader;
     string fileName = ("TopMovies.txt");
-    Movie movie1;
+    vector<Movie> movieVector;
     string s;
+    Movie m;
+    
     int n;
     
     reader.open(fileName);
@@ -57,15 +61,21 @@ int main()
         cout << "ERROR. File not opened" << endl;
     }
     else {
-        reader >> s;
-        movie1.setScreenWriter(s);
-        reader >> n;
-        movie1.setReleaseYear(n);
-        reader >> s;
-        movie1.setTitle(s);
+        for (int i = 0; i < FILE_SIZE; i++) {
+            getline(reader, s);
+            m.setScreenWriter(s);
+            reader >> n;
+            m.setReleaseYear(n);
+            reader >> s;
+            m.setTitle(s);
+            movieVector.push_back(m);
+        }
     }
     
-    movie1.print_Movie();
+    for (int i = 0; i < FILE_SIZE; i++) {
+        movieVector[i].print_Movie();
+        cout << "---" << endl;
+    }
     
     return 0;
 }
