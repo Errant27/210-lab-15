@@ -1,14 +1,71 @@
-//
-//  main.cpp
-//  210-lab-15
-//
-//  Created by Neil Orton on 9/27/24.
-//
-
 #include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+
+class Movie
+{
+private:
+    string screenWriter;
+    int releaseYear;
+    string title;
+    
+public:
+    void setScreenWriter(string s) {
+        screenWriter = s;
+    }
+    
+    void setReleaseYear(int r) {
+        releaseYear = r;
+    }
+    
+    void setTitle(string t) {
+        title = t;
+    }
+    
+    string getScreenWriter() {
+        return screenWriter;
+    }
+    
+    int getReleaseYear() {
+        return releaseYear;
+    }
+    
+    string getTitle() {
+        return title;
+    }
+    
+    void print_Movie() {
+        cout << screenWriter << endl;
+        cout << releaseYear << endl;
+        cout << title << endl;
+    }
+}; // End of class
+
+int main()
+{
+    ifstream reader;
+    string fileName = ("TopMovies.txt");
+    Movie movie1;
+    string s;
+    int n;
+    
+    reader.open(fileName);
+    
+    if (!reader) {
+        cout << "ERROR. File not opened" << endl;
+    }
+    else {
+        reader >> s;
+        movie1.setScreenWriter(s);
+        reader >> n;
+        movie1.setReleaseYear(n);
+        reader >> s;
+        movie1.setTitle(s);
+    }
+    
+    movie1.print_Movie();
+    
     return 0;
 }
